@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 16525f41c69601f499f650502a75e5f4
+guid: fb08ada639a51c74aaa459b3a2e5139a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6001266580015091085
-    second: moai_0
+      213: 9202115436691158854
+    second: img_moal_ititle_sample_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -97,19 +97,6 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
     buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -126,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: moai_0
+      name: img_moal_ititle_sample_0
       rect:
         serializedVersion: 2
-        x: 73
-        y: 12
-        width: 222
-        height: 373
+        x: 0
+        y: 0
+        width: 1396
+        height: 785
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d8d09309828c84350800000000000000
-      internalID: 6001266580015091085
+      spriteID: 6477d1a1c3b74bf70800000000000000
+      internalID: 9202115436691158854
       vertices: []
       indices: 
       edges: []
@@ -160,8 +147,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      moai_0: 6001266580015091085
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
