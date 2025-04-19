@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: fb08ada639a51c74aaa459b3a2e5139a
+guid: 735ba7556f0be934fade63f799c0cfa2
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 9202115436691158854
-    second: img_moal_ititle_sample_0
+      213: -8904207090207000009
+    second: landmark_moai_pukao_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -97,7 +97,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: WebGL
+    buildTarget: Android
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -110,7 +110,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: Android
+    buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: img_moal_ititle_sample_0
+      name: landmark_moai_pukao_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1396
-        height: 785
+        x: 91
+        y: 28
+        width: 205
+        height: 402
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6477d1a1c3b74bf70800000000000000
-      internalID: 9202115436691158854
+      spriteID: 73a72b5f3d6ed6480800000000000000
+      internalID: -8904207090207000009
       vertices: []
       indices: 
       edges: []
@@ -151,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      img_moal_ititle_sample_0: 9202115436691158854
+      landmark_moai_pukao_0: -8904207090207000009
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
