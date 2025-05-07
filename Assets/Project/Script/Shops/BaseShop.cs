@@ -3,5 +3,5 @@ using UnityEngine;
 
 public class BaseShop
 {
-    public List<IShopElement> shopElements = new List<IShopElement>();
+    public List<IShopElement> _shopElements = new List<IShopElement>();
 }

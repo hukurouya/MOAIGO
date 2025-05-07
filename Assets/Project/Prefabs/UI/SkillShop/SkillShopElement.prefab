@@ -337,6 +337,7 @@ MonoBehaviour:
   _elementPriceText: {fileID: 1907391894952749454}
   _elementName: NaN
   _elementPrice: NaN
+  _button: {fileID: 3873096161385166096}
 --- !u!114 &698783786604727612
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ShopSkill : BaseShop
 {
@@ -33,24 +34,20 @@ public class ShopSkill : BaseShop
 
     private void CreateElement()
     {
-        shopElements = new List<IShopElement>();
-
-        BaseSkill skill_autoClick = new SkillAutoClick();
-        BaseSkill skill_growUp = new SkillGrowUp();
-        BaseSkill skill_BeautyUp = new SkillBeautyUp();
-        BaseSkill skill_encountUp = new SkillEncountUp();
-
-        shopElements.Add(skill_autoClick);
-        shopElements.Add(skill_growUp);
-        shopElements.Add(skill_BeautyUp);
-        shopElements.Add(skill_encountUp);
+        _shopElements = new List<IShopElement>();
+        _shopElements.Add(SkillManager.GetSkills()[0]);
+        _shopElements.Add(SkillManager.GetSkills()[1]);
+        _shopElements.Add(SkillManager.GetSkills()[2]);
+        _shopElements.Add(SkillManager.GetSkills()[3]);
 
         ShopSkillElement prefab = AssetDatabase.LoadAssetAtPath<ShopSkillElement>("Assets/Project/Prefabs/UI/SkillShop/SkillShopElement.prefab");
-        for(int i = 0; i < shopElements.Count; i++)
+        for(int i = 0; i < _shopElements.Count; i++)
         {
             _skillElement = GameObject.Instantiate(prefab, _canvas.transform.Find("SkillShopGroup/ElementListView/Viewport/Content"));
-            _skillElement.elementName = (shopElements[i] as BaseSkill).skillName;
-            _skillElement.elementPrice = (shopElements[i] as BaseSkill).shopPrice.ToString();
+            _skillElement.elementName = (_shopElements[i] as BaseSkill).skillName;
+            _skillElement.elementPrice = (_shopElements[i] as BaseSkill).shopPrice.ToString();
+            _skillElement.AddListener(_shopElements[i]);
+
 
             Debug.Log(_skillElement.transform.parent);
         }

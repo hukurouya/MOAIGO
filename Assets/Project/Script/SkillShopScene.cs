@@ -3,11 +3,13 @@ using UnityEngine;
 public class SkillShopScene : MonoBehaviour
 {
     public ShopSkill shopSkill;
+    public MoaiStat moai;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         shopSkill = new ShopSkill();
+        moai = new MoaiStat();
     }
 
     // Update is called once per frame
@@ -26,5 +28,8 @@ public class SkillShopScene : MonoBehaviour
             
             shopSkill.Close();
         }
+
+        if(moai == null) return;
+        moai.UpdateSkill();
     }
 }
