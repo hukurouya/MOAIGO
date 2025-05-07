@@ -22,7 +22,9 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     public float ClickGainMOAI; // クリックで得られる量
 
     public float BeautifulPoint;    // イケメン度
-    public float EncChance;         // エンカウント確率
+    
+    public float EncountTimer;
+
 
     private Animator _encAnim;      // エンカウント対象のアニメーション
     private bool _inGame;           // ゲームのシーンか true = ゲーム中(これでアニメーション中等で一時的にゲームを止める)
@@ -30,26 +32,32 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     [Header("要設定")]
     public TextMeshProUGUI MOAIText;// モアイ数表示用
     public Animator MOAIAnimator;   // モアイのアニメーション
+    public Animator MOAIGroupeAnimator; // モアイたちのアニメーション
     public GameObject EncPrefab;    // エンカウント用のプレハブ
+    public GameObject ChildPrefab; // 子供のプレハブ
+    public GameObject MOAIGroupe;   // モアイ達の真なる親
 
     private void Start()
     {
- 
+        
         _inGame = true;
     }
 
     private void Update()
     {
-        // ゲーム中なら動く
-        if (_inGame)
+        if (Input.GetMouseButtonDown(0))
         {
-            if (Input.GetMouseButtonDown(0))
+            ClickMOAI();
+            // ゲーム中なら動く
+            if (_inGame)
             {
-                ClickMOAI();
-                RandomEncount(); // 一旦クリック時にランダムにエンカウント
-            }
+                //RandomEncount();
+                //StartCoroutine(GenerationalChange());
 
+            }
         }
+        //　表示の更新
+        ViewMOAI();
 
     }
 
@@ -68,13 +76,12 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     public void ClickMOAI()
     {
         // クリック時にアニメーション
-        MOAIAnimator.Play("MOAIClick");
+        MOAIGroupeAnimator.Play("MOAIGroupe_Click");
         
         // MOAIの増加
         GainMOAI(ClickGainMOAI);
 
-        //　表示の更新
-        ViewMOAI();
+    
     }
 
     /// <summary>
@@ -93,10 +100,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         float randomEnc = Random.Range(0,100); // 値は適当
 
         // 出会うか
-        if (EncChance >= randomEnc)
-        {
-            StartCoroutine(Meeting());
-        }
+        StartCoroutine(Meeting());
     }
 
     /// <summary>
@@ -108,30 +112,28 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     {
         // エンカウント対象を召喚
         GameObject EncMOAI = Instantiate(EncPrefab);
-        Animator EncAnim = EncMOAI.GetComponent<Animator>();
+        _encAnim = EncMOAI.GetComponent<Animator>();
 
         // エンカウント対象のアニメーションを開始
-        EncAnim.Play("EncMOAI_Move");
-        _inGame = false;
+        _encAnim.Play("EncMOAI_Move");
         
         yield return null;
         // エンカウント対象のアニメーション時間を取得
-        var state = EncAnim.GetCurrentAnimatorStateInfo(0);
+        var state = _encAnim.GetCurrentAnimatorStateInfo(0);
         // アニメーション終了まで待機
         yield return new WaitForSeconds(state.length);
        
-        _inGame = true;
 
         float randomLove = Random.Range(0, 100); // 値は適当
        
         // 親になれるか
         if (BeautifulPoint > randomLove)
         {
-            LoveSuccess();
+            StartCoroutine(LoveSuccess());
         }
         else
         {
-            LoveFailure();
+            StartCoroutine(LoveFailure());
         }
 
     }
@@ -139,17 +141,30 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     /// <summary>
     /// 親への以降(アニメーションを付けたい)
     /// </summary>
-    public void LoveSuccess()
+    public IEnumerator LoveSuccess()
     {
+        _encAnim.Play("EncMOAI_LoveSuccess");
+        yield return null;
+        // エンカウント対象のアニメーション時間を取得
+        var state = _encAnim.GetCurrentAnimatorStateInfo(0);
+        // アニメーション終了まで待機
+        yield return new WaitForSeconds(state.length);
         Growth();
     }
 
     /// <summary>
     /// ふられた(アニメーションを付けたい)
     /// </summary>
-    public void LoveFailure()
+    public IEnumerator LoveFailure()
     {
 
+        _encAnim.Play("EncMOAI_LoveFailure");
+        yield return null;
+        // エンカウント対象のアニメーション時間を取得
+        var state = _encAnim.GetCurrentAnimatorStateInfo(0);
+        // アニメーション終了まで待機
+        yield return new WaitForSeconds(state.length);
+        
     }
 
     /// <summary>
@@ -157,7 +172,39 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     /// </summary>
     public void Growth()
     {
+        if (state == State.parent)
+        {
+            StartCoroutine(GenerationalChange());
+            return;
+        }    
         state += 1;
+        
+    }
+
+    /// <summary>
+    /// 世代交代
+    /// </summary>
+    public IEnumerator GenerationalChange()
+    {
+         GameObject childMOAI = Instantiate(ChildPrefab);
+         _encAnim = childMOAI.GetComponent<Animator>();
+         _encAnim.Play("EncMOAI_Move");
+         yield return null;
+         // エンカウント対象のアニメーション時間を取得
+         var state = _encAnim.GetCurrentAnimatorStateInfo(0);
+         // アニメーション終了まで待機
+         yield return new WaitForSeconds(state.length);
+
+         MOAIAnimator.Play("MOAI_GenerationalChange");
+         yield return null;
+         // エンカウント対象のアニメーション時間を取得
+         state = MOAIAnimator.GetCurrentAnimatorStateInfo(0);
+         // アニメーション終了まで待機
+         yield return new WaitForSeconds(state.length);
+
+         _encAnim.Play("EncMOAI_GenerationalChange");
+       
+        yield return null;
     }
 
 }
