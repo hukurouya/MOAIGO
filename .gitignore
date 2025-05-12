@@ -70,7 +70,7 @@ crashlytics-build.properties
 /[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*/*.bin*
 
 # DoTween
-/[Aa]ssets/[Pp]lugins/[Dd]emigiant/[Dd]o[Tt]ween/
+/[Aa]ssets/[Pp]lugins/[Dd]emigiant/[Dd][Oo][Tt]ween/
 
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
